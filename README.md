@@ -1,4 +1,4 @@
-![Congratsbot](/assets/congratsbot-avatar.png)
+<img src="/assets/congratsbot-avatar.png" alt="Congratsbot avatar" width="128" />
 
 # Congratsbot
 
