@@ -30,3 +30,5 @@ jobs:
 ## Credits
 
 The implementation of this bot was forked from [Astro Automation Tools](https://github.com/withastro/automation).
+
+The [congratsbot avatar](/assets/congratsbot-avatar.png) is from [Emoji Kitchen](https://emoji.supply/kitchen/?%F0%9F%9A%80+%F0%9F%99%82=8x1l3a).
