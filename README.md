@@ -1,3 +1,5 @@
+![Congratsbot](/assets/congratsbot-avatar.png)
+
 # Congratsbot
 
 Congratsbot is a webhook for announcing code merges to Discord and celebrating contributors. 
