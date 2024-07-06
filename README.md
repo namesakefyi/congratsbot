@@ -4,8 +4,8 @@ Congratsbot is a webhook for announcing code merges to Discord and celebrating c
 
 Example:
 
-> 🎊 **Merged!** Congratsbot (Bot): [`[ci] release (#232)`](#)  
-> _Featuring contributions by github-actions[bot]! 🌟_
+> 🎊 **Merged!** Eva Decker: [`Release (#232)`](#)  
+> _Featuring contributions by Luke Lennon! 🌟_
 
 ## Prerequisites
 
