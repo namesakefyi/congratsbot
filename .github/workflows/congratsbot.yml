@@ -1,0 +1,45 @@
+name: Congratsbot
+
+on:
+  workflow_call:
+    secrets:
+      DISCORD_WEBHOOK:
+        description: >
+          URL of a Discord webhook. To create one:
+            1. Find the channel you want to post congrats in.
+            2. Right-click and select “Edit Channel”.
+            3. Navigate to “Integrations” > “View Webhooks”.
+            4. Click “New Webhook” and copy the URL for your newly created webhook.
+        required: true
+
+jobs:
+  post-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: 'namesakefyi/congratsbot'
+          ref: 'main'
+          path: 'congratsbot'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - id: message
+        name: Format Discord message
+        env:
+          GITHUB_REPO: ${{ github.event.repository.full_name }}
+          COMMIT_AUTHOR: ${{ github.event.commits[0].author.name }}
+          COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
+          COMMIT_ID: ${{ github.event.commits[0].id }}
+        run: node congratsbot/.github/congratsbot.mjs
+
+      - name: Send message on Discord
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@0.3.2
+        with:
+          args: '${{ steps.message.outputs.DISCORD_MESSAGE }}'
