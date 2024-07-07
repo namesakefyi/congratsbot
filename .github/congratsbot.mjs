@@ -41,7 +41,6 @@ function setDiscordMessage(author, id, commitMsg, repo) {
   const emoji = pick([
     "🎉",
     "🎊",
-    "🧑‍🚀",
     "🥳",
     "🙌",
     "🚀",
@@ -52,11 +51,28 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     "🥰",
     "👑",
     "💥",
+    "🌟",
+    "✨",
+    "🎈",
+    "👾",
+    "🦾",
+    "🫀",
+    "🌈",
+    "🎯",
+    "🎀",
+    ":rainbowheart:",
+    ":snailhearts:",
+    ":snailcode:",
+    ":snailsparkles:",
+    ":snailparty:",
+    ":snail100:",
+    ":snailthumb:",
   ]);
 
   setOutput(
     "DISCORD_MESSAGE",
-    `${emoji} **Merged!** ${author}: [\`${commitMessage}\`](<https://github.com/${repo}/commit/${id}>)${coAuthorThanks}`
+    `${emoji} **Merged!** ${author} in [${repo}](<https://github.com/${repo}>):\n
+    [\`${commitMessage}\`](<https://github.com/${repo}/commit/${id}>)${coAuthorThanks}`
   );
 }
 
@@ -86,12 +102,14 @@ function getCoAuthorsMessage(names) {
   /** @type {string[]} */
   let messages = [
     "Thanks <names> for helping! ✨",
-    "<names> stepped up to lend a hand — thank you! 🙌",
+    "<names> stepped up to lend a hand—thank you! 🙌",
     "<names> with the assist! 💪",
     "Couldn’t have done this without <names>! 💜",
-    "Made even better by <names>! 🚀",
+    "Made even better by <names>! 🫶",
     "And the team effort award goes to… <names>! 🏆",
     "Featuring contributions by <names>! 🌟",
+    "Shoutout to <names> for their help! 💞",
+    "With a little help from <names>! 🤝",
   ];
 
   const chosenMessage = pick(messages);
