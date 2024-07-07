@@ -62,13 +62,11 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     "🌈",
     "🎯",
     "🎀",
-    ":rainbowheart:",
-    ":snailhearts:",
-    ":snailcode:",
-    ":snailsparkles:",
-    ":snailparty:",
-    ":snail100:",
-    ":snailthumb:",
+    "🐌",
+    "🫡",
+    "🤸",
+    "💌",
+    "🎁",
   ]);
 
   setOutput(
