@@ -38,33 +38,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     coAuthorThanks = "\n" + getCoAuthorsMessage(names);
   }
 
-  const emoji = pick([
-    "🎉",
-    "🎊",
-    "🥳",
-    "🙌",
-    "🚀",
-    "🔥",
-    "🤩",
-    "👏",
-    "🫶",
-    "🥰",
-    "👑",
-    "💥",
-    "🌟",
-    "✨",
-    "🎈",
-    "🦾",
-    "🫀",
-    "🌈",
-    "🎯",
-    "🎀",
-    "🐌",
-    "🫡",
-    "🤸",
-    "💌",
-    "🎁",
-  ]);
+  const emoji = pick([`\:snailhearts:`, `\:snailcode:`]);
 
   setOutput(
     "DISCORD_MESSAGE",
