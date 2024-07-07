@@ -38,7 +38,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     coAuthorThanks = "\n" + getCoAuthorsMessage(names);
   }
 
-  const emoji = pick([`\:snailhearts:`, `\:snailcode:`]);
+  const emoji = pick([`<:snailcode:1252943614124757093>`]);
 
   setOutput(
     "DISCORD_MESSAGE",
