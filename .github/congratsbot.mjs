@@ -38,7 +38,33 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     coAuthorThanks = "\n" + getCoAuthorsMessage(names);
   }
 
-  const emoji = pick([`<:snailcode:1252943614124757093>`]);
+  const emoji = pick([
+    "🎉",
+    "🎊",
+    "🥳",
+    "🙌",
+    "🚀",
+    "👏",
+    "🫶",
+    "💥",
+    "🦾",
+    "🫀",
+    "🎯",
+    "🎀",
+    "🤸",
+    "<:snailhearts:1252942414272790649>",
+    "<:snailcode:1252943614124757093>",
+    "<:snail100:1252943611193065492>",
+    "<:snailparty:1252943701211218041>",
+    "<:snailrainbow:1252943702171713536>",
+    "<:snailcrown:1252943615051698279>",
+    "<:snailmail:1252944367144931369>",
+    "<:snailsparkles:1252943629253873764>",
+    "<:snailthumb:1252943634937151488>",
+    "<:rainbowheart:1252946387272990720>",
+    "<a:shipit:1252958874567180348>",
+    "<a:sparklesanim:1252953756954394709>",
+  ]);
 
   setOutput(
     "DISCORD_MESSAGE",
