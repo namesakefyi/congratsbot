@@ -31,7 +31,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     .slice(2)
     .filter((line) => line.match(/Co-authored-by: (.+) <.+>/i))
     .map((line) => line.match(/Co-authored-by: (.+) <.+>/i)[1])
-    .filter((name) => name !== ("github-actions[bot]" || "dependabot[bot]"));
+    .filter((name) => name !== "dependabot[bot]");
 
   let coAuthorThanks = "";
   if (coAuthors.length > 0) {
