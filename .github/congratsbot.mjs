@@ -40,10 +40,8 @@ function setDiscordMessage(author, id, commitMsg, repo) {
 
   const emoji = pick([
     "🎉",
-    "🎊",
     "🥳",
     "🙌",
-    "🚀",
     "👏",
     "🫶",
     "💥",
@@ -53,6 +51,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     "🎀",
     "🤸",
     "<:snailhearts:1252942414272790649>",
+    "<:snailheartpulse:1252992491326537809>",
     "<:snailcode:1252943614124757093>",
     "<:snail100:1252943611193065492>",
     "<:snailparty:1252943701211218041>",
@@ -64,6 +63,14 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     "<:rainbowheart:1252946387272990720>",
     "<a:shipit:1252958874567180348>",
     "<a:sparklesanim:1252953756954394709>",
+    "<a:bongocat:1252973865328447569>",
+    "<a:kirbyhype:1252963022767525899>",
+    "<a:fast:1252960278384087040>",
+    "<a:smilecat:1252953495812964382>",
+    "<a:staranim:1252958590248157254>",
+    "<a:frogwowscroll:1252993790873178152>",
+    "<a:mariostar:1252994987319234651>",
+    "<a:confetti:1252959212670291988>",
   ]);
 
   setOutput(
