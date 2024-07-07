@@ -56,7 +56,6 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     "🌟",
     "✨",
     "🎈",
-    "👾",
     "🦾",
     "🫀",
     "🌈",
