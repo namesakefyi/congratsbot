@@ -1,4 +1,4 @@
-<img src="/assets/congratsbot-avatar.png" alt="Congratsbot avatar" width="128" />
+<img src="/assets/congratsbot-avatar.png" alt="Congratsbot avatar" width="128" style="border-radius: 50%" />
 
 # Congratsbot
 
