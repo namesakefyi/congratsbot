@@ -24,8 +24,6 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     .replaceAll("`", "")
     .replaceAll("-", "–");
 
-  const repoName = repo.split("/")[1];
-
   const coAuthors = commitMsg
     .split("\n")
     .slice(2)
@@ -70,7 +68,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
 
   setOutput(
     "DISCORD_MESSAGE",
-    `${emoji} **Merged!** ${author} in ${repoName}:\n\> [${commitMessage}](<https://github.com/${repo}/commit/${id}>)${coAuthorThanks}`
+    `${emoji} **Merged!** ${author}: [\`${commitMessage}\`](<https://github.com/${repo}/commit/${id}>)${coAuthorThanks}`
   );
 }
 
