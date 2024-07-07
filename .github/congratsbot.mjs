@@ -70,7 +70,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
 
   setOutput(
     "DISCORD_MESSAGE",
-    `${emoji} **Merged!** ${author} in ${repoName}:\n[\`${commitMessage}\`](<https://github.com/${repo}/commit/${id}>)${coAuthorThanks}`
+    `${emoji} **Merged!** ${author} in ${repoName}:\n\> [${commitMessage}](<https://github.com/${repo}/commit/${id}>)${coAuthorThanks}`
   );
 }
 
