@@ -1,6 +1,6 @@
 import { setOutput } from "./utils.mjs";
 
-const { COMMIT_AUTHOR, COMMIT_ID, COMMIT_MESSAGE, GITHUB_REPO } = process.env;
+const { COMMIT_AUTHOR, COMMIT_ID, COMMIT_MESSAGE, GITHUB_REPO, EXCLUDE } = process.env;
 if (!COMMIT_AUTHOR || !COMMIT_ID || !COMMIT_MESSAGE || !GITHUB_REPO) {
   throw new Error(
     "Missing input.\n" +
@@ -10,6 +10,37 @@ if (!COMMIT_AUTHOR || !COMMIT_ID || !COMMIT_MESSAGE || !GITHUB_REPO) {
       "\n"
   );
 }
+
+/**
+ * Check if a commit message should be excluded based on regex patterns
+ * @param {string} commitMessage The commit message to check
+ * @param {string[]} excludePatterns Array of regex patterns to match against
+ * @returns {boolean} True if the commit should be excluded, false otherwise
+ */
+function shouldExcludeCommit(commitMessage, excludePatterns) {
+  return excludePatterns.some(pattern => {
+    try {
+      const regex = new RegExp(pattern, 'i'); // 'i' flag for case-insensitive matching
+      return regex.test(commitMessage);
+    } catch (e) {
+      console.error(`Invalid regex pattern: ${pattern}`);
+      return false;
+    }
+  });
+}
+
+// Parse exclude patterns from JSON string
+const excludePatterns = JSON.parse(EXCLUDE || '[]');
+
+// Check if commit message matches any exclusion pattern
+const shouldPost = !shouldExcludeCommit(COMMIT_MESSAGE, excludePatterns);
+
+if (!shouldPost) {
+  setOutput("SHOULD_POST", "false");
+  process.exit(0);
+}
+
+setOutput("SHOULD_POST", "true");
 setDiscordMessage(COMMIT_AUTHOR, COMMIT_ID, COMMIT_MESSAGE, GITHUB_REPO);
 
 /**
@@ -107,7 +138,7 @@ function getCoAuthorsMessage(names) {
     "Thanks <names> for helping! ✨",
     "<names> stepped up to lend a hand—thank you! 🙌",
     "<names> with the assist! 💪",
-    "Couldn’t have done this without <names>! 💜",
+    "Couldn't have done this without <names>! 💜",
     "Made even better by <names>! 🫶",
     "And the team effort award goes to… <names>! 🏆",
     "Featuring contributions by <names>! 🌟",

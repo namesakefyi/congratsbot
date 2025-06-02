@@ -27,7 +27,15 @@ jobs:
     uses: namesakefyi/congratsbot/.github/workflows/congratsbot.yml@main
     secrets:
       DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONGRATS }}
+    with:
+      # Optional: Don't post to Discord if a commit matches these regex patterns
+      exclude: '["^chore\\(deps\\)", "^chore:", "\\[skip\\]"]'  
 ```
+
+The `exclude` parameter accepts an array of regex patterns. Messages matching any pattern will be skipped. Patterns are case-insensitive by default. For example:
+- `"^chore\\(deps\\)"` - matches messages starting with "chore(deps)"
+- `"^chore:"` - matches messages starting with "chore:"
+- `"\\[skip\\]"` - matches messages containing "[skip]"
 
 ## Credits
 

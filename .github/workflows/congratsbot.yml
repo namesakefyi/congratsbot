@@ -2,14 +2,20 @@ name: Congratsbot
 
 on:
   workflow_call:
+    inputs:
+      exclude:
+        description: 'Array of regex patterns to exclude from posting (e.g. ["^chore\\(deps\\)", "^chore:", "\\[skip\\]"]). Messages matching any pattern will be skipped. Patterns are case-insensitive.'
+        required: false
+        type: string
+        default: '[]'
     secrets:
       DISCORD_WEBHOOK:
         description: >
           URL of a Discord webhook. To create one:
             1. Find the channel you want to post congrats in.
-            2. Right-click and select “Edit Channel”.
-            3. Navigate to “Integrations” > “View Webhooks”.
-            4. Click “New Webhook” and copy the URL for your newly created webhook.
+            2. Right-click and select "Edit Channel".
+            3. Navigate to "Integrations" > "View Webhooks".
+            4. Click "New Webhook" and copy the URL for your newly created webhook.
         required: true
 
 jobs:
@@ -35,9 +41,11 @@ jobs:
           COMMIT_AUTHOR: ${{ github.event.commits[0].author.name }}
           COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
           COMMIT_ID: ${{ github.event.commits[0].id }}
+          EXCLUDE: ${{ inputs.exclude }}
         run: node congratsbot/.github/congratsbot.mjs
 
       - name: Send message on Discord
+        if: steps.message.outputs.SHOULD_POST == 'true'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@0.3.2
