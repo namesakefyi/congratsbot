@@ -11,6 +11,9 @@ if (!COMMIT_AUTHOR || !COMMIT_ID || !COMMIT_MESSAGE || !GITHUB_REPO) {
   );
 }
 
+// Bot accounts to leave out of the co-author thank-you line
+const ignoredCoAuthors = ["dependabot[bot]", "renovate[bot]"];
+
 /**
  * Check if a commit message should be excluded based on regex patterns
  * @param {string} commitMessage The commit message to check
@@ -60,7 +63,7 @@ function setDiscordMessage(author, id, commitMsg, repo) {
     .slice(2)
     .filter((line) => line.match(/Co-authored-by: (.+) <.+>/i))
     .map((line) => line.match(/Co-authored-by: (.+) <.+>/i)[1])
-    .filter((name) => name !== "dependabot[bot]");
+    .filter((name) => !ignoredCoAuthors.includes(name));
 
   let coAuthorThanks = "";
   if (coAuthors.length > 0) {
