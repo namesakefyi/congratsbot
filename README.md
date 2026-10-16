@@ -29,13 +29,17 @@ jobs:
       DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CONGRATS }}
     with:
       # Optional: Don't post to Discord if a commit matches these regex patterns
-      exclude: '["^chore\\(deps\\)", "^chore:", "\\[skip\\]"]'  
+      exclude: '["^chore\\(deps\\)", "^chore:", "\\[skip\\]"]'
+      # Optional: Don't post to Discord if a commit was authored by one of these names
+      exclude-authors: '["renovate[bot]", "dependabot[bot]"]'
 ```
 
 The `exclude` parameter accepts an array of regex patterns. Messages matching any pattern will be skipped. Patterns are case-insensitive by default. For example:
 - `"^chore\\(deps\\)"` - matches messages starting with "chore(deps)"
 - `"^chore:"` - matches messages starting with "chore:"
 - `"\\[skip\\]"` - matches messages containing "[skip]"
+
+The `exclude-authors` parameter accepts an array of commit author names. Commits by any of these authors will be skipped. Names must match exactly, ignoring case.
 
 ## Credits
 

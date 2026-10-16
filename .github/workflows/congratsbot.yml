@@ -8,6 +8,11 @@ on:
         required: false
         type: string
         default: '[]'
+      exclude-authors:
+        description: 'Array of commit author names to exclude from posting (e.g. ["renovate[bot]", "dependabot[bot]"]). Commits by any of these authors will be skipped. Names are case-insensitive.'
+        required: false
+        type: string
+        default: '[]'
     secrets:
       DISCORD_WEBHOOK:
         description: >
@@ -42,6 +47,7 @@ jobs:
           COMMIT_MESSAGE: ${{ github.event.commits[0].message }}
           COMMIT_ID: ${{ github.event.commits[0].id }}
           EXCLUDE: ${{ inputs.exclude }}
+          EXCLUDE_AUTHORS: ${{ inputs.exclude-authors }}
         run: node congratsbot/.github/congratsbot.mjs
 
       - name: Send message on Discord
