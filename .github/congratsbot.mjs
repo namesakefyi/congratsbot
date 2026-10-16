@@ -1,6 +1,6 @@
 import { setOutput } from "./utils.mjs";
 
-const { COMMIT_AUTHOR, COMMIT_ID, COMMIT_MESSAGE, GITHUB_REPO, EXCLUDE } = process.env;
+const { COMMIT_AUTHOR, COMMIT_ID, COMMIT_MESSAGE, GITHUB_REPO, EXCLUDE, EXCLUDE_AUTHORS } = process.env;
 if (!COMMIT_AUTHOR || !COMMIT_ID || !COMMIT_MESSAGE || !GITHUB_REPO) {
   throw new Error(
     "Missing input.\n" +
@@ -32,11 +32,26 @@ function shouldExcludeCommit(commitMessage, excludePatterns) {
   });
 }
 
-// Parse exclude patterns from JSON string
-const excludePatterns = JSON.parse(EXCLUDE || '[]');
+/**
+ * Check if a commit author should be excluded
+ * @param {string} commitAuthor The name of the commit author
+ * @param {string[]} excludeAuthors Array of author names to match against
+ * @returns {boolean} True if the commit should be excluded, false otherwise
+ */
+function shouldExcludeAuthor(commitAuthor, excludeAuthors) {
+  return excludeAuthors.some(
+    (author) => author.toLowerCase() === commitAuthor.toLowerCase()
+  );
+}
 
-// Check if commit message matches any exclusion pattern
-const shouldPost = !shouldExcludeCommit(COMMIT_MESSAGE, excludePatterns);
+// Parse exclude patterns and authors from JSON strings
+const excludePatterns = JSON.parse(EXCLUDE || '[]');
+const excludeAuthors = JSON.parse(EXCLUDE_AUTHORS || '[]');
+
+// Check if commit author or message matches any exclusion
+const shouldPost =
+  !shouldExcludeAuthor(COMMIT_AUTHOR, excludeAuthors) &&
+  !shouldExcludeCommit(COMMIT_MESSAGE, excludePatterns);
 
 if (!shouldPost) {
   setOutput("SHOULD_POST", "false");
